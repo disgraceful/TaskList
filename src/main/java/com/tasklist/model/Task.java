@@ -1,13 +1,20 @@
 package com.tasklist.model;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
+
+import org.springframework.data.annotation.Id;
 
 public class Task {
+	
+	@Id
 	private long id;
 	private String name;
 	private String taskDescription;
-	private Date start;
+	private Calendar startDate;
 	private boolean isCompleted;
+	private User user;
 	
 	public Task(){//NOSONAR
 		
@@ -15,7 +22,8 @@ public class Task {
 	
 	public Task(String name,Date start){
 		this.name = name;
-		this.start = start;
+		this.startDate = new GregorianCalendar();
+		this.startDate.setTime(start);
 	}
 
 	public long getId() {
@@ -42,14 +50,6 @@ public class Task {
 		this.taskDescription = taskDescription;
 	}
 
-	public Date getStart() {
-		return start;
-	}
-
-	public void setStart(Date start) {
-		this.start = start;
-	}
-
 	public boolean isCompleted() {
 		return isCompleted;
 	}
@@ -57,4 +57,27 @@ public class Task {
 	public void setCompleted(boolean isCompleted) {
 		this.isCompleted = isCompleted;
 	}
+
+	public Calendar getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(Calendar startDate) {
+		this.startDate = startDate;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	@Override
+	public String toString() {
+		return "Id " + id+ " name "+ name + " description: " + taskDescription + " startDate " + startDate.getTime()+" isCompleted "+ isCompleted;// + " user "+ user.getId();  
+	}
+	
+	
 }
