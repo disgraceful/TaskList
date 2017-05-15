@@ -1,6 +1,7 @@
-build/
 target/
+build/
 .settings/
+config/
 WebContent/
 /.classpath
 /.project
