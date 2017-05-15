@@ -4,16 +4,20 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 
 public class Task {
 	
 	@Id
-	private long id;
+	private ObjectId id;
 	private String name;
 	private String taskDescription;
 	private Calendar startDate;
 	private boolean isCompleted;
+	
+	@DBRef
 	private User user;
 	
 	public Task(){//NOSONAR
@@ -26,11 +30,11 @@ public class Task {
 		this.startDate.setTime(start);
 	}
 
-	public long getId() {
+	public ObjectId getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(ObjectId id) {
 		this.id = id;
 	}
 
@@ -65,6 +69,15 @@ public class Task {
 	public void setStartDate(Calendar startDate) {
 		this.startDate = startDate;
 	}
+	
+	public Date getTaskTime(){
+		return startDate.getTime();
+	}
+	
+	public void setTaskTime(Date date){
+		startDate.setTime(date);
+	}
+	
 
 	public User getUser() {
 		return user;

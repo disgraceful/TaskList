@@ -2,12 +2,14 @@ package com.tasklist.model;
 
 import java.util.List;
 
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 
 public class User {
 	@Id
-	private long id;
+	private ObjectId id;
+	
 	@Indexed(unique=true)
 	private String login;
 	private String password;
@@ -19,10 +21,10 @@ public class User {
 		this.login = login;
 		this.password = password;
 	}
-	public long getId() {
+	public ObjectId getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(ObjectId id) {
 		this.id = id;
 	}
 	public String getLogin() {
@@ -44,7 +46,11 @@ public class User {
 		this.tasks = tasks;
 	}
 	
-	
+	@Override
+	public String toString() {
+	return "Id " + id + " login " + login + " password " + password;
+		
+	}
 	
 
 }
