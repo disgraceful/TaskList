@@ -5,12 +5,13 @@ import java.util.List;
 import org.bson.types.ObjectId;
 
 import com.tasklist.model.User;
+import com.tasklist.services.dto.UserDTO;
 
 public interface UserService {
-	User getUser(ObjectId id);
-	User getUserByLogin(String login);
-	List<User>getUsers();
-	User createUser(User user);
-	User updateUser(User user);
+	UserDTO getUser(ObjectId id);
+	UserDTO getUserByLogin(String login);
+	List<UserDTO>getUsers();
+	UserDTO createUser(User user);
+	UserDTO updateUser(User user);
 	void deleteUser(User user);
 }

@@ -16,10 +16,9 @@ public class Task {
 	private String taskDescription;
 	private Calendar startDate;
 	private boolean isCompleted;
-	
 	@DBRef
 	private User user;
-	
+
 	public Task(){//NOSONAR
 		
 	}
