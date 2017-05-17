@@ -8,6 +8,7 @@ import org.apache.log4j.Logger;
 import org.bson.types.ObjectId;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.tasklist.dao.contracts.UserDAO;
 import com.tasklist.model.User;
@@ -15,6 +16,7 @@ import com.tasklist.services.contracts.UserService;
 import com.tasklist.services.dto.UserDTO;
 import com.tasklist.services.requestmodels.UserRegisterReqModel;
 
+@Service
 public class UserServiceImpl implements UserService {
 
 	private static final Logger LOG = LogManager.getLogger(UserServiceImpl.class);
@@ -63,9 +65,6 @@ public class UserServiceImpl implements UserService {
 
 	private boolean validateReqMoedl(UserRegisterReqModel model) {
 		if (model.getLogin().isEmpty() || model.getLogin() == null) {
-			return false;
-		}
-		if (model.getPassword() == null || model.getConfirmPassword() == null) {
 			return false;
 		}
 		return model.getConfirmPassword().trim().equals(model.getPassword().trim());
