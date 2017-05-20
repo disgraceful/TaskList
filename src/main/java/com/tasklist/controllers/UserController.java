@@ -23,12 +23,12 @@ public class UserController {
 	
 	@PostMapping(value="/register")
 	public UserDTO register(@RequestBody UserRegisterReqModel model){
-		
+		return new UserDTO();
 	}
 	
 	@PostMapping(value="/login")
 	public UserDTO login(@RequestBody UserLoginReqModel model){
-		
+		return new UserDTO();
 	}
 	
 	@PostMapping(value="/logout")

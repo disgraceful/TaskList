@@ -9,6 +9,7 @@ import org.bson.types.ObjectId;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.tasklist.dao.contracts.UserDAO;
 import com.tasklist.model.User;
@@ -28,21 +29,25 @@ public class UserServiceImpl implements UserService {
 	private ModelMapper mapper;
 
 	@Override
+	@Transactional
 	public UserDTO getUser(ObjectId id) {
 		return mapper.map(userDAO.findOne(id), UserDTO.class);
 	}
 
 	@Override
+	@Transactional
 	public UserDTO getUserByLogin(String login) {
 		return mapper.map(userDAO.findUserByLogin(login), UserDTO.class);
 	}
 
 	@Override
+	@Transactional
 	public List<UserDTO> getUsers() {
 		return userDAO.findAll().stream().map(f -> mapper.map(f, UserDTO.class)).collect(Collectors.toList());
 	}
 
 	@Override
+	@Transactional
 	public UserDTO createUser(UserRegisterReqModel model) {
 		if (validateReqMoedl(model)) {
 			User user = new User(model.getLogin(), model.getPassword());
@@ -52,6 +57,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	@Transactional
 	public UserDTO updateUser(UserDTO user) {
 		User userToUpdate = userDAO.findOne(user.getId());
 		userToUpdate.setLogin(user.getLogin());
@@ -59,6 +65,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	@Transactional
 	public void deleteUser(ObjectId id) {
 		userDAO.delete(id);
 	}
