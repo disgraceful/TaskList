@@ -58,7 +58,6 @@ public class ServiceTests {
 		UserDTO newUser = userService.getUserAsDTO(id);
 		LOG.info(newUser.toString());
 		LOG.info(userDTO.toString());
-		LOG.info(userService.getUsers().size());
 	}
 
 }
