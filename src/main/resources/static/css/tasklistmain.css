@@ -4,7 +4,11 @@ body {
 
 .text_aligner {
 	position: fixed;
-	margin: 5px;
+	margin: 4px;
+}
+
+#projects {
+	margin: 0;
 }
 
 ul.topnav {
@@ -45,12 +49,25 @@ ul.sidenav li a {
 	text-decoration: none;
 }
 
-ul.topnav li a.not_active {
-	margin-top: 5px;
+ul.sidenav li.bottom {
+	position: fixed;
+	bottom: 0px;
+	width: 100%;
 }
 
-ul.topnav li a:hover:not(.not_active) {
+#projects.sidenav li a {
+	display: block;
+	color: #000;
+	padding: 8px 16px;
+	text-decoration: none;
+}
+
+ul.topnav li a:hover:not(.not_active){
 	background-color: #111;
+}
+
+ul.topnav li a.not_active {
+	margin-top: 5px;
 }
 
 ul.topnav li.right {
@@ -62,7 +79,7 @@ ul.topnav li.center {
 	padding-left: 20%;
 }
 
-ul.sidenav li a:hover {
+ul.sidenav li a:hover, .mycontent li a:hover {
 	background-color: #555;
 	color: white;
 }
@@ -72,9 +89,36 @@ ul.sidenav li a:active {
 	color: white;
 }
 
-ul.sidenav li a:hover:not (.active ) {
+#projects.sidenav li a:hover {
 	background-color: #555;
 	color: white;
+}
+
+#projects.sidenav li a:active {
+	background-color: #4CAF50;
+	color: white;
+}
+
+#main {
+	position: fixed;
+	margin-left: 20%;
+	margin-top: 4.1%;
+	height: 100%;
+	width: 100%;
+	background-color: #d6d7d8;
+}
+
+.mycontent {
+	padding:0px;
+	margin: 0px;
+	list-style-type: none;
+}
+
+.mycontent li a {
+	transition: .3s;
+	display: block;
+	padding: 10px;
+	text-decoration: none;
 }
 
 @media screen and (max-width: 600px) {
@@ -84,11 +128,12 @@ ul.sidenav li a:hover:not (.active ) {
 	ul.sidenav {
 		display: none;
 	}
-	ul.topnav li.right, ul.topnav li, ul.sidenav li, ul.topnav li.center {
+	ul.topnav li.right, ul.topnav li, ul.sidenav li {
 		float: none;
 	}
 	ul.topnav li.center {
+		float: none;
 		position: relative;
-		margin: 0;
+		padding-left: 0;
 	}
 }

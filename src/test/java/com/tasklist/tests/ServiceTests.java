@@ -55,7 +55,7 @@ public class ServiceTests {
 		userDTO.setLogin("Nazarpidor");
 		ObjectId id = userDTO.getId();
 		userService.updateUser(userDTO);
-		UserDTO newUser = userService.getUser(id);
+		UserDTO newUser = userService.getUserAsDTO(id);
 		LOG.info(newUser.toString());
 		LOG.info(userDTO.toString());
 		LOG.info(userService.getUsers().size());

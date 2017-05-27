@@ -5,16 +5,26 @@ import java.util.List;
 
 import org.bson.types.ObjectId;
 
-import com.tasklist.model.Task;
+import com.tasklist.services.dto.TaskDTO;
+import com.tasklist.services.requestmodels.TaskCreateReqModel;
 
 public interface TaskService {
-	Task getTaskById(ObjectId id);
-	List<Task> getAllTasks();
-	List<Task>getTasksByUserId(ObjectId userId);
-	List<Task>getTaskByCompletion(boolean completed);
-	List<Task>getTaskByDate(Date date);
-	Task createTask(Task task);
-	Task updateTask(Task task);
-	void deleteTask(Task task);
-	
+	TaskDTO getTaskById(ObjectId id);
+
+	List<TaskDTO> getAllTasks();
+
+	List<TaskDTO> getTasksByUserId(ObjectId userId);
+
+	List<TaskDTO> getTaskByCompletion(boolean completed);
+
+	List<TaskDTO> getTaskByDate(Date date);
+
+	List<TaskDTO> getTaskByProjectId(ObjectId projId);
+
+	TaskDTO createTask(TaskCreateReqModel model);
+
+	TaskDTO updateTask(TaskDTO task);
+
+	void deleteTask(ObjectId taskId);
+
 }

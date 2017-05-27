@@ -12,10 +12,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.tasklist.dao.contracts.ProjectDAO;
 import com.tasklist.dao.contracts.TaskDAO;
 import com.tasklist.dao.contracts.UserDAO;
+import com.tasklist.model.Project;
 import com.tasklist.model.Task;
 import com.tasklist.model.User;
+import com.tasklist.services.dto.ProjectDTO;
 import com.tasklist.services.dto.TaskDTO;
 import com.tasklist.services.dto.UserDTO;
 
@@ -32,6 +35,9 @@ public class MapperTests {
 
 	@Autowired
 	private TaskDAO taskDAO;
+	
+	@Autowired
+	private ProjectDAO projectDAO;
 
 	private User user;
 	private UserDTO userDTO;
@@ -39,17 +45,29 @@ public class MapperTests {
 	private Task task;
 	private TaskDTO taskDTO;
 
+	private Project project;
+	private ProjectDTO projectDTO;
+	
 	@Before
 	public void init() {
 		userDAO.deleteAll();
 		taskDAO.deleteAll();
+		projectDAO.deleteAll();
 		user = new User("lol", "xd");
 		user = userDAO.save(user);
-
+		user = userDAO.findOne(user.getId());
+		
 		task = new Task("LoL", new GregorianCalendar(2014, 3, 15).getTime());
 		task.setTaskDescription("heh");
 		task.setUser(user);
 		task = taskDAO.save(task);
+		
+		
+		project= new Project("Luuuuuul");
+		project.setUser(user);
+		LOG.info(user.getId() + " before");
+		project = projectDAO.save(project);
+		LOG.info(user.getId() + " after");
 
 	}
 
@@ -72,4 +90,14 @@ public class MapperTests {
 		task.setStartDate(taskDTO.getStartDate());
 		LOG.info("task " + task.toString());
 	}
+	
+	@Test
+	public void testProjectMapping(){
+		LOG.info("project " + project.toString());
+		projectDTO = mapper.map(project,ProjectDTO.class);
+		LOG.info("projectDTO " + projectDTO.toString());
+		project = mapper.map(projectDTO,Project.class);
+		LOG.info("project "+ project.toString());
+	}
+	
 }

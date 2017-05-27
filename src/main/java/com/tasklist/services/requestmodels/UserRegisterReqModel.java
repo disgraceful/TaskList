@@ -1,6 +1,6 @@
 package com.tasklist.services.requestmodels;
 
-public class UserRegisterReqModel {
+public class UserRegisterReqModel implements ReqModel {
 	private String login;
 	private String password;
 	private String confirmPassword;

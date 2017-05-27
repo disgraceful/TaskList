@@ -30,30 +30,45 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	@Transactional
-	public UserDTO getUser(ObjectId id) {
+	public UserDTO getUserAsDTO(ObjectId id) {
 		return mapper.map(userDAO.findOne(id), UserDTO.class);
 	}
-
+	
 	@Override
 	@Transactional
-	public UserDTO getUserByLogin(String login) {
-		return mapper.map(userDAO.findUserByLogin(login), UserDTO.class);
+	public User getUserAsPOJO(ObjectId id) {
+		return userDAO.findOne(id);
 	}
 
 	@Override
 	@Transactional
-	public List<UserDTO> getUsers() {
+	public UserDTO getUserByLoginAsDTO(String login) {
+		return mapper.map(userDAO.findUserByLogin(login), UserDTO.class);
+	}
+	
+	@Override
+	@Transactional
+	public User getUserByLoginAsPOJO(String login) {
+		return userDAO.findUserByLogin(login);
+	}
+
+	@Override
+	@Transactional
+	public List<UserDTO> getUsersAsDTO() {
 		return userDAO.findAll().stream().map(f -> mapper.map(f, UserDTO.class)).collect(Collectors.toList());
+	}
+	
+	@Override
+	@Transactional
+	public List<User> getUsersAsPOJO() {
+		return userDAO.findAll();
 	}
 
 	@Override
 	@Transactional
 	public UserDTO createUser(UserRegisterReqModel model) {
-		if (validateReqMoedl(model)) {
-			User user = new User(model.getLogin(), model.getPassword());
-			return mapper.map(userDAO.save(user), UserDTO.class);
-		}
-		return new UserDTO();
+		User user = new User(model.getLogin(), model.getPassword());
+		return mapper.map(userDAO.save(user), UserDTO.class);
 	}
 
 	@Override
@@ -70,10 +85,4 @@ public class UserServiceImpl implements UserService {
 		userDAO.delete(id);
 	}
 
-	private boolean validateReqMoedl(UserRegisterReqModel model) {
-		if (model.getLogin().isEmpty() || model.getLogin() == null) {
-			return false;
-		}
-		return model.getConfirmPassword().trim().equals(model.getPassword().trim());
-	}
 }

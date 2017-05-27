@@ -9,7 +9,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 
 public class Task {
-	
+
 	@Id
 	private ObjectId id;
 	private String name;
@@ -18,12 +18,14 @@ public class Task {
 	private boolean isCompleted;
 	@DBRef
 	private User user;
+	@DBRef
+	private Project project;
 
-	public Task(){//NOSONAR
-		
+	public Task() {// NOSONAR
+
 	}
-	
-	public Task(String name,Date start){
+
+	public Task(String name, Date start) {
 		this.name = name;
 		this.startDate = new GregorianCalendar();
 		this.startDate.setTime(start);
@@ -68,15 +70,14 @@ public class Task {
 	public void setStartDate(Calendar startDate) {
 		this.startDate = startDate;
 	}
-	
-	public Date getTaskTime(){
+
+	public Date getTaskTime() {
 		return startDate.getTime();
 	}
-	
-	public void setTaskTime(Date date){
+
+	public void setTaskTime(Date date) {
 		startDate.setTime(date);
 	}
-	
 
 	public User getUser() {
 		return user;
@@ -85,11 +86,21 @@ public class Task {
 	public void setUser(User user) {
 		this.user = user;
 	}
+	
+	
+
+	public Project getProject() {
+		return project;
+	}
+
+	public void setProject(Project project) {
+		this.project = project;
+	}
 
 	@Override
 	public String toString() {
-		return "Id " + id+ " name "+ name + " description: " + taskDescription + " startDate " + startDate.getTime()+" isCompleted "+ isCompleted;// + " user "+ user.getId();  
+		return "Id " + id + " name " + name + " description: " + taskDescription + " startDate " + startDate.getTime()
+				+ " isCompleted " + isCompleted;// + " user "+ user.getId();
 	}
-	
-	
+
 }

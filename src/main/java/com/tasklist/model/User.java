@@ -14,6 +14,7 @@ public class User {
 	private String login;
 	private String password;
 	private List<Task> tasks;
+	private List<Project> projects;
 	
 	public User(){}//NOSONAR
 	
@@ -46,6 +47,14 @@ public class User {
 		this.tasks = tasks;
 	}
 	
+	public List<Project> getProjects() {
+		return projects;
+	}
+
+	public void setProjects(List<Project> projects) {
+		this.projects = projects;
+	}
+
 	@Override
 	public String toString() {
 	return "Id " + id + " login " + login + " password " + password;
