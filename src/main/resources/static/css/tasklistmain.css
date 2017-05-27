@@ -119,6 +119,7 @@ ul.sidenav li a:active {
 	display: block;
 	padding: 10px;
 	text-decoration: none;
+	color:black;
 }
 
 @media screen and (max-width: 600px) {
