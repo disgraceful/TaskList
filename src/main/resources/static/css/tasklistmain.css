@@ -22,7 +22,7 @@ ul.topnav {
 
 ul.sidenav {
 	list-style-type: none;
-	margin-top: 4.1%;
+	margin-top: 4.25%;
 	padding: 0;
 	width: 20%;
 	background-color: #f1f1f1;
@@ -35,6 +35,7 @@ ul.topnav li {
 }
 
 ul.topnav li a {
+	transition: .3s;
 	display: inline-block;
 	color: white;
 	text-align: center;
@@ -43,6 +44,7 @@ ul.topnav li a {
 }
 
 ul.sidenav li a {
+	transition: .3s;
 	display: block;
 	color: #000;
 	padding: 16px 16px;
@@ -52,17 +54,18 @@ ul.sidenav li a {
 ul.sidenav li.bottom {
 	position: fixed;
 	bottom: 0px;
-	width: 100%;
+	width: 20%;
 }
 
 #projects.sidenav li a {
+	transition: .3s;
 	display: block;
 	color: #000;
 	padding: 8px 16px;
 	text-decoration: none;
 }
 
-ul.topnav li a:hover:not(.not_active){
+ul.topnav li a:hover:not(.not_active ){
 	background-color: #111;
 }
 
@@ -75,66 +78,128 @@ ul.topnav li.right {
 }
 
 ul.topnav li.center {
-	position: absolute;
-	padding-left: 20%;
+	position: relative;
+	padding-left: 15%;
 }
 
-ul.sidenav li a:hover, .mycontent li a:hover {
+.mycontent li:hover>a{
 	background-color: #555;
 	color: white;
 }
 
-ul.sidenav li a:active {
-	background-color: #4CAF50;
+.mycontent li > .icon_container > a:hover{
+	color:white;	
+}
+
+.sidenav li:hover > a , #projects.sidenav li:hover .proj_popup{
+	background-color: #555;
+	color: white;
+	display:block;
+}
+
+#projects.sidenav li:hover>a{
+	background-color: #555;
 	color: white;
 }
 
-#projects.sidenav li a:hover {
+#projects.sidenav li> .proj_popup> a:hover{
+	color: white;
+}
+
+.proj_popup:hover{
+	background-color: #555;
+	color: white;
+}
+
+.mycontent li a:hover .icon_container{
+	background-color: #555;
+	color: white;
+}
+
+
+
+ul.sidenav li a:active {
+	background-color: teal;
+	color: white;
+}
+
+.sidenav#projects li a:hover {
 	background-color: #555;
 	color: white;
 }
 
 #projects.sidenav li a:active {
-	background-color: #4CAF50;
+	background-color: teal;
 	color: white;
 }
 
 #main {
 	position: fixed;
 	margin-left: 20%;
-	margin-top: 4.1%;
+	margin-top: 4.2%;
 	height: 100%;
 	width: 100%;
 	background-color: #d6d7d8;
+	z-index:-1;
 }
 
 .mycontent {
-	padding:0px;
+	padding: 0px;
 	margin: 0px;
 	list-style-type: none;
 }
 
 .mycontent li a {
-	transition: .3s;
 	display: block;
 	padding: 10px;
 	text-decoration: none;
-	color:black;
+	color: black;
 }
 
-@media screen and (max-width: 600px) {
-	ul.topnav {
-		poisition: relative;
-	}
-	ul.sidenav {
-		display: none;
-	}
-	ul.topnav li.right, ul.topnav li, ul.sidenav li {
-		float: none;
-	}
-	ul.topnav li.center {
-		float: none;
-		position: relative;
-		padding-left: 0;
-	}
+.task_icons {
+	position: fixed;
+	right: 0px;
+}
+
+.proj_container {
+	padding: 10px;
+	height: 100%;
+}
+
+#create_proj {
+	position: fixed;
+	width: 20%;
+	margin-top: 4.3%;
+	height: 100%;
+	right: 0;
+	background-color: #f1f1f1;
+	z-index:-1;
+}
+
+.proj_popup{
+	position:relative;
+	float:right;
+	width:100px;
+	margin-right:-100px;
+	margin-top:-46px;
+	z-index:100;
+	display:none;	
+}
+
+.icon_container{
+	position:fixed;
+	right:10px;
+	top:65px;
+	width:100px;
+	margin-left:-100px;
+}
+
+#create_task{
+	position: relative;
+	float:right;
+	margin-top: 4.3%;
+	background-color: white;
+	padding:5px;
+	display: none;
+	z-index: 100;
 }
