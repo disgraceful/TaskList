@@ -55,9 +55,22 @@ public class Project {
 		this.user = user;
 	}
 
+	public void addTask(Task task) {
+		if (!tasks.contains(task)) {
+			tasks.add(task);
+		}
+	}
+
+	public void deleteTask(Task task) {
+		if (tasks.contains(task)) {
+			tasks.remove(task);
+		}
+
+	}
+
 	@Override
 	public String toString() {
-		return "Id " + id+ " name " + name + " userId " + user.getId();
+		return "Id " + id + " name " + name + " userId " + user.getId();
 	}
 
 }

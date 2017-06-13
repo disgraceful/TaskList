@@ -13,10 +13,8 @@
 <body>
 	<div class="container">
 		<div class="row">
-			<spring:url value="/register" var="registerActionUrl" />
 			<spring:url value="/login" var="loginActionUrl"/>
-				<form:form class="col s12" method="POST" modelAttribute="user" action="${registerActionUrl}">
-             
+				<form:form class="col s12" method="POST" modelAttribute="user" action="${loginActionUrl}">
 				<div class="row">
 					<div class="input-field col s12">
 						<i class="material-icons prefix">email</i>
@@ -32,17 +30,7 @@
 						<form:label path="password" for="password">Password</form:label>
 					</div>
 				</div>
-								
-				<div id="confirm" class="row">
-					<div class="input-field col s12">
-						<i class="material-icons prefix">lock</i>
-						<form:input path="confirmPassword" id="password" type="password" class="validate"/>
-						<form:label path="confirmPassword" for="password">Confirm Password</form:label>
-					</div>
-				</div>
-			
-
-				<button id="login" onclick="loginToSignUp();" class="btn waves-effect waves-light blue" type="button">Login</button>
+				<button class="btn waves-effect waves-light blue" type="button" onClick="self.location.href='/register'">Sing Up</button>
 				<button class="btn waves-effect waves-light green" type="submit">Submit 
 					<i class="material-icons right">send</i>
 				</button>

@@ -25,10 +25,13 @@ public class Task {
 
 	}
 
-	public Task(String name, Date start) {
+	public Task(String name, GregorianCalendar start) {
 		this.name = name;
 		this.startDate = new GregorianCalendar();
-		this.startDate.setTime(start);
+	}
+
+	public Task(String name) {
+		this.name = name;
 	}
 
 	public ObjectId getId() {
@@ -86,8 +89,6 @@ public class Task {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	
-	
 
 	public Project getProject() {
 		return project;

@@ -57,7 +57,7 @@ public class MapperTests {
 		user = userDAO.save(user);
 		user = userDAO.findOne(user.getId());
 		
-		task = new Task("LoL", new GregorianCalendar(2014, 3, 15).getTime());
+		task = new Task("LoL", new GregorianCalendar(2014, 3, 15));
 		task.setTaskDescription("heh");
 		task.setUser(user);
 		task = taskDAO.save(task);
