@@ -14,7 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.WebUtils;
 
+import com.tasklist.services.contracts.ProjectService;
+import com.tasklist.services.contracts.TaskService;
 import com.tasklist.services.contracts.UserService;
+import com.tasklist.services.dto.UserDTO;
 import com.tasklist.services.requestmodels.UserLoginReqModel;
 import com.tasklist.services.requestmodels.UserRegisterReqModel;
 
@@ -24,6 +27,12 @@ public class WelcomeController {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private ProjectService projService;
+	
+	@Autowired 
+	private TaskService taskService;
 
 	@RequestMapping(value = "/login")
 	public ModelAndView loginPage() {
@@ -44,18 +53,20 @@ public class WelcomeController {
 	@RequestMapping(value = "/tasklist")
 	public ModelAndView welcome(HttpSession session, ModelMap model, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView("tasklistmain");
-		Object user = session.getAttribute("user");
+		UserDTO user = (UserDTO) session.getAttribute("user");
 		Cookie userCookie = WebUtils.getCookie(request, "userId");
-		LOG.info(userCookie != null);
 		if (user == null) {
-			if(userCookie!=null){
+			if(userCookie!=null){				
 				user = userService.getUserAsDTO(new ObjectId(userCookie.getValue()));
+				LOG.info(user.getLogin());
 			}else{
 				model.addAttribute("user", new UserLoginReqModel());
 				return new ModelAndView("redirect:/login", model);
 			}
 		}
 		mav.addObject("user", user);
+		mav.addObject("projects",projService.getProjectByUserIdAsDTO(user.getId()));
+		mav.addObject("tasks",taskService.getTasksByUserId(user.getId()));
 		return mav;
 	}
 }

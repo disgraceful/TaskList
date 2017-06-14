@@ -30,16 +30,15 @@
 						<i class="material-icons prefix">lock</i>
 						<form:input path="password" id="password" type="password"
 							class="validate" />
-						<form:label path="password" for="password">Password</form:label>
+						<form:label path="password" for="password" data-error="Not a valid email">Password</form:label>
 					</div>
 				</div>
 
 				<div id="confirm" class="row">
 					<div class="input-field col s12">
 						<i class="material-icons prefix">lock</i>
-						<form:input path="confirmPassword" id="password" type="password"
-							class="validate" />
-						<form:label path="confirmPassword" for="password">Confirm Password</form:label>
+						<form:input path="confirmPassword" id="confirmPassword" type="password"/>
+						<form:label id="confirmLbl" path="confirmPassword" for="confirmPassword"  data-error="Passwords do not match">Confirm Password</form:label>
 					</div>
 				</div>
 
@@ -47,13 +46,15 @@
 					type="button" onClick="self.location.href='/login'">Login</button>
 				<button class="btn waves-effect waves-light green" type="submit">
 					Submit <i class="material-icons right">send</i>
-				</button>
+				</button> 
 			</form:form>
 		</div>
-	</div>
-	<script src="../js/tasklist.js"></script>
+	
+
 	<script type="text/javascript"
 		src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+			<script src="../js/tasklistjquery.js"></script></div>
+	<script src="../js/tasklist.js"></script>
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
 </body>

@@ -25,7 +25,7 @@ import com.tasklist.services.requestmodels.UserLoginReqModel;
 import com.tasklist.services.requestmodels.UserRegisterReqModel;
 import com.tasklist.services.utils.UserFormValidator;
 
-@Controller(value = "/api")
+@Controller
 public class UserController {
 	private static final Logger LOG = LogManager.getLogger(UserController.class);
 
@@ -35,10 +35,10 @@ public class UserController {
 	@Autowired
 	UserFormValidator userFormValidator;
 
-	@InitBinder
-	protected void initBinder(WebDataBinder binder) {
-		binder.setValidator(userFormValidator);
-	}
+//	@InitBinder
+//	protected void initBinder(WebDataBinder binder) {
+//		binder.setValidator(userFormValidator);
+//	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public ModelAndView register(@ModelAttribute("user") UserRegisterReqModel user, BindingResult result,
@@ -54,7 +54,6 @@ public class UserController {
 		userCookie.setMaxAge(1800 * 1800);
 		response.addCookie(userCookie);
 		return new ModelAndView("redirect:/tasklist");
-
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)

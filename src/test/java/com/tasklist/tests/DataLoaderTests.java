@@ -1,14 +1,17 @@
-package com.tasklist;
+package com.tasklist.tests;
 
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.ApplicationArguments;
-import org.springframework.boot.ApplicationRunner;
-import org.springframework.stereotype.Component;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import com.tasklist.dao.contracts.ProjectDAO;
 import com.tasklist.dao.contracts.TaskDAO;
@@ -16,34 +19,47 @@ import com.tasklist.dao.contracts.UserDAO;
 import com.tasklist.model.Project;
 import com.tasklist.model.Task;
 import com.tasklist.model.User;
+import com.tasklist.services.dto.ProjectDTO;
+import com.tasklist.services.dto.TaskDTO;
+import com.tasklist.services.dto.UserDTO;
+@RunWith(SpringRunner.class)
+@SpringBootTest
+public class DataLoaderTests {
 
-@Component
-public class DataLoader implements ApplicationRunner {
-	private static final Logger LOG = LogManager.getLogger(DataLoader.class);
+	private Logger LOG = LogManager.getLogger(DataLoaderTests.class);
+	@Autowired
+	private ModelMapper mapper;
 
+	@Autowired
 	private UserDAO userDAO;
-	private ProjectDAO projDAO;
+
+	@Autowired
 	private TaskDAO taskDAO;
 
 	@Autowired
-	public DataLoader(UserDAO userDAO, ProjectDAO projDAO, TaskDAO taskDAO) {
-		this.userDAO = userDAO;
-		this.projDAO = projDAO;
-		this.taskDAO = taskDAO;
-	}
+	private ProjectDAO projDAO;
 
-	@Override
-	public void run(ApplicationArguments args) {
+	private User user;
+	private UserDTO userDTO;
+
+	private Task task;
+	private TaskDTO taskDTO;
+
+	private Project project;
+	private ProjectDTO projectDTO;
+
+	@Before
+	public void init() {
 		userDAO.deleteAll();
 		projDAO.deleteAll();
 		taskDAO.deleteAll();
 		User user1 = new User("example@gmail.com", "pass123");
-	
+
 		Project project1 = new Project("Personal");
 		Project project2 = new Project("Work");
 		Project project3 = new Project("Shopping");
 		Project project4 = new Project("Movies to watch");
-	
+
 		Task task1 = new Task("Wash my car!", new GregorianCalendar(2017, 5, 13));
 		Task task2 = new Task("Call my mom!", new GregorianCalendar(2017, 5, 13));
 		Task task3 = new Task("Kill myself!", new GregorianCalendar(2017, 5, 15));
@@ -57,21 +73,21 @@ public class DataLoader implements ApplicationRunner {
 		user1.addProject(project2);
 		user1.addProject(project3);
 		user1.addProject(project4);
-//		user1.setTasks(new ArrayList<Task>() {
-//			{
-//				add(task1);
-//				add(task2);
-//				add(task3);
-//				add(task4);
-//				add(task5);
-//				add(task6);
-//				add(task7);
-//			}
-//		});
-//		project1.addTask(task4);
-//		project1.addTask(task6);
-//		project4.addTask(task7);
-		userDAO.save(user1);
+		user1.setTasks(new ArrayList<Task>() {
+			{
+				add(task1);
+				add(task2);
+				add(task3);
+				add(task4);
+				add(task5);
+				add(task6);
+				add(task7);
+			}
+		});
+		project1.addTask(task4);
+		project1.addTask(task6);
+		project3.addTask(task7);
+		user = userDAO.save(user1);
 		projDAO.save(project1);
 		projDAO.save(project2);
 		projDAO.save(project3);
@@ -82,5 +98,17 @@ public class DataLoader implements ApplicationRunner {
 		taskDAO.save(task5);
 		taskDAO.save(task6);
 		taskDAO.save(task7);
+
 	}
+
+	@Test
+	public void testUser() {
+		LOG.info("user " + user.toString());
+		userDTO = mapper.map(user, UserDTO.class);
+		LOG.info("dto " + userDTO.toString());
+		user = mapper.map(userDTO, User.class);
+		LOG.info("user " + user.toString());
+	}
+
+	
 }

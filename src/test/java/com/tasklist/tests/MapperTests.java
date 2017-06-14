@@ -35,7 +35,7 @@ public class MapperTests {
 
 	@Autowired
 	private TaskDAO taskDAO;
-	
+
 	@Autowired
 	private ProjectDAO projectDAO;
 
@@ -47,28 +47,20 @@ public class MapperTests {
 
 	private Project project;
 	private ProjectDTO projectDTO;
-	
+
 	@Before
 	public void init() {
 		userDAO.deleteAll();
-		taskDAO.deleteAll();
-		projectDAO.deleteAll();
 		user = new User("lol", "xd");
-		user = userDAO.save(user);
-		user = userDAO.findOne(user.getId());
-		
 		task = new Task("LoL", new GregorianCalendar(2014, 3, 15));
-		task.setTaskDescription("heh");
-		task.setUser(user);
-		task = taskDAO.save(task);
-		
-		
-		project= new Project("Luuuuuul");
-		project.setUser(user);
-		LOG.info(user.getId() + " before");
-		project = projectDAO.save(project);
-		LOG.info(user.getId() + " after");
+		project = new Project("Luuuuuul");
 
+		user.addTask(task);
+		user.addProject(project);
+
+		user = userDAO.save(user);
+		project = projectDAO.save(project);
+		task = taskDAO.save(task);
 	}
 
 	@Test
@@ -79,7 +71,7 @@ public class MapperTests {
 		user = mapper.map(userDTO, User.class);
 		LOG.info("user " + user.toString());
 	}
-
+	
 	@Test
 	public void testTaskMapping() {
 		LOG.info("task " + task.toString());
@@ -90,14 +82,14 @@ public class MapperTests {
 		task.setStartDate(taskDTO.getStartDate());
 		LOG.info("task " + task.toString());
 	}
-	
+
 	@Test
-	public void testProjectMapping(){
+	public void testProjectMapping() {
 		LOG.info("project " + project.toString());
-		projectDTO = mapper.map(project,ProjectDTO.class);
+		projectDTO = mapper.map(project, ProjectDTO.class);
 		LOG.info("projectDTO " + projectDTO.toString());
-		project = mapper.map(projectDTO,Project.class);
-		LOG.info("project "+ project.toString());
+		project = mapper.map(projectDTO, Project.class);
+		LOG.info("project " + project.toString());
 	}
-	
+
 }

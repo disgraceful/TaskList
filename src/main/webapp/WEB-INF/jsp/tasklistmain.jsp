@@ -1,5 +1,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -10,14 +11,14 @@
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
-
 </head>
 <body>
+	<spring:url value="/logout" var="logoutUrl" />
 	<ul id="topbar" class="topnav">
 		<li><a href="javascript:closeSideBar()"><i
 				class="material-icons">menu</i></a></li>
 		<li class="center"><a class="not_active">Date</a></li>
-		<li class="right"><a href="<c:url value="/logout"/>"><i
+		<li class="right"><a href="<c:url value="${logoutUrl}"/>"><i
 				class="material-icons">exit_to_app</i></a></li>
 		<li class="right"><a onclick="showCreateTask()"><i
 				class="material-icons">add</i></a></li>
@@ -38,48 +39,21 @@
 		</a></li>
 		<li>
 			<ul class="sidenav" id="projects">
-				<c:forEach var="proj" items="${user.projects}"
-					varStatus="loop">
+			<c:set var="projects" value="{tasks/${user.id}/user}"/>
+				<c:forEach var="proj" items="${projects}" varStatus="loop">
 					<li><a><i class="material-icons">fiber_manual_record</i> <span
-						class="text_aligner">${proj.name}</span> <span
-						style="float: right; padding: 4px;">12</span> </a>
-					<div class="proj_popup">
-						<a style="padding: 8px; margin-right: -5px; display: inline-block"><i
-							class="material-icons">mode_edit</i></a> <a
-							style="padding: 8px; margin-right: -5px; display: inline-block"><i
-							class="material-icons">delete</i></a>
-					</div></li>
+							class="text_aligner">${proj.name}</span> <span
+							style="float: right; padding: 4px;">${fn:length(proj.tasks)}</span>
+					</a>
+						<div class="proj_popup">
+							<a
+								style="padding: 8px; margin-right: -5px; display: inline-block"><i
+								class="material-icons">mode_edit</i></a> <a
+								style="padding: 8px; margin-right: -5px; display: inline-block"><i
+								class="material-icons">delete</i></a>
+						</div></li>
+				</c:forEach>
 
-				<li><a><i class="material-icons">fiber_manual_record</i><span
-						class="text_aligner">${proj.name}</span><span
-						style="float: right; padding: 4px;">12</span></a>
-					<div class="proj_popup">
-						<a style="padding: 8px; margin-right: -5px; display: inline-block"><i
-							class="material-icons">mode_edit</i></a> <a
-							style="padding: 8px; margin-right: -5px; display: inline-block"><i
-							class="material-icons">delete</i></a>
-					</div></li>
-
-				<li><a><i class="material-icons">fiber_manual_record</i><span
-						class="text_aligner">${proj.name}</span><span
-						style="float: right; padding: 4px;">12</span></a>
-					<div class="proj_popup">
-						<a style="padding: 8px; margin-right: -5px; display: inline-block"><i
-							class="material-icons">mode_edit</i></a> <a
-							style="padding: 8px; margin-right: -5px; display: inline-block"><i
-							class="material-icons">delete</i></a>
-					</div></li>
-				<li><a><i class="material-icons">fiber_manual_record</i><span
-						class="text_aligner">Movies to watch</span><span
-						style="float: right; padding: 4px;">12</span></a>
-					<div class="proj_popup">
-						<a style="padding: 8px; margin-right: -5px; display: inline-block"><i
-							class="material-icons">mode_edit</i></a> <a
-							style="padding: 8px; margin-right: -5px; display: inline-block"><i
-							class="material-icons">delete</i></a>
-					</div></li>
-				  </c:forEach>
-			
 				<li class="bottom"><a href="javascript:addProject()"><i
 						class="material-icons">add</i><span class="text_aligner">Add
 							new project</span></a></li>

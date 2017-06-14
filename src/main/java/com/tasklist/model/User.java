@@ -1,5 +1,6 @@
 package com.tasklist.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.bson.types.ObjectId;
@@ -17,9 +18,12 @@ public class User {
 	private List<Project> projects;
 
 	public User() {
-	}// NOSONAR
+		tasks = new ArrayList<>();
+		projects = new ArrayList<>();
+	}
 
 	public User(String login, String password) {
+		this();
 		this.login = login;
 		this.password = password;
 	}
@@ -91,7 +95,6 @@ public class User {
 	@Override
 	public String toString() {
 		return "Id " + id + " login " + login + " password " + password;
-
 	}
 
 }

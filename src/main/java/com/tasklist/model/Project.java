@@ -1,5 +1,6 @@
 package com.tasklist.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.bson.types.ObjectId;
@@ -16,10 +17,12 @@ public class Project {
 	@DBRef
 	private User user;
 
-	public Project() {// NOSONAR
+	public Project() {
+		tasks = new ArrayList<>(); 
 	}
 
 	public Project(String name) {
+		this();
 		this.name = name;
 	}
 

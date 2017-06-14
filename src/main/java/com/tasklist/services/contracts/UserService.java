@@ -26,5 +26,4 @@ public interface UserService {
 	User getUserByLoginAsPOJO(String login);
 
 	User getUserAsPOJO(ObjectId id);
-
 }

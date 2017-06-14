@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.tasklist.dao.contracts.UserDAO;
+import com.tasklist.model.Project;
 import com.tasklist.model.User;
 import com.tasklist.services.contracts.UserService;
 import com.tasklist.services.dto.UserDTO;
@@ -31,7 +32,9 @@ public class UserServiceImpl implements UserService {
 	@Override
 	@Transactional
 	public UserDTO getUserAsDTO(ObjectId id) {
-		return mapper.map(userDAO.findOne(id), UserDTO.class);
+		User user = userDAO.findOne(id);
+		LOG.info(user.toString());
+		return mapper.map(user, UserDTO.class);
 	}
 	
 	@Override
@@ -68,9 +71,13 @@ public class UserServiceImpl implements UserService {
 	@Transactional
 	public UserDTO createUser(UserRegisterReqModel model) {
 		User user = new User(model.getLogin(), model.getPassword());
+		user.addProject(new Project("Personal"));
+		user.addProject(new Project("Work"));
+		user.addProject(new Project("Shopping"));
+		user.addProject(new Project("Movies to watch"));
 		return mapper.map(userDAO.save(user), UserDTO.class);
 	}
-
+	
 	@Override
 	@Transactional
 	public UserDTO updateUser(UserDTO user) {
