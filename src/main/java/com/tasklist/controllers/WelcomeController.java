@@ -64,6 +64,7 @@ public class WelcomeController {
 				return new ModelAndView("redirect:/login", model);
 			}
 		}
+		
 		mav.addObject("user", user);
 		mav.addObject("projects",projService.getProjectByUserIdAsDTO(user.getId()));
 		mav.addObject("tasks",taskService.getTasksByUserId(user.getId()));

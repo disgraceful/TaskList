@@ -57,20 +57,20 @@ public class DataLoader implements ApplicationRunner {
 		user1.addProject(project2);
 		user1.addProject(project3);
 		user1.addProject(project4);
-//		user1.setTasks(new ArrayList<Task>() {
-//			{
-//				add(task1);
-//				add(task2);
-//				add(task3);
-//				add(task4);
-//				add(task5);
-//				add(task6);
-//				add(task7);
-//			}
-//		});
-//		project1.addTask(task4);
-//		project1.addTask(task6);
-//		project4.addTask(task7);
+		user1.setTasks(new ArrayList<Task>() {
+			{
+				add(task1);
+				add(task2);
+				add(task3);
+				add(task4);
+				add(task5);
+				add(task6);
+				add(task7);
+			}
+		});
+		project1.addTask(task4);
+		project1.addTask(task6);
+		project4.addTask(task7);
 		userDAO.save(user1);
 		projDAO.save(project1);
 		projDAO.save(project2);

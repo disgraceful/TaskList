@@ -18,8 +18,8 @@
 		<li><a href="javascript:closeSideBar()"><i
 				class="material-icons">menu</i></a></li>
 		<li class="center"><a class="not_active">Date</a></li>
-		<li class="right"><a href="<c:url value="${logoutUrl}"/>"><i
-				class="material-icons">exit_to_app</i></a></li>
+		<li class="right"><a href="<c:url value="${logoutUrl}"/>">
+			<i class="material-icons">exit_to_app</i></a></li>
 		<li class="right"><a onclick="showCreateTask()"><i
 				class="material-icons">add</i></a></li>
 	</ul>
@@ -39,18 +39,15 @@
 		</a></li>
 		<li>
 			<ul class="sidenav" id="projects">
-			<c:set var="projects" value="{tasks/${user.id}/user}"/>
 				<c:forEach var="proj" items="${projects}" varStatus="loop">
-					<li><a><i class="material-icons">fiber_manual_record</i> <span
-							class="text_aligner">${proj.name}</span> <span
-							style="float: right; padding: 4px;">${fn:length(proj.tasks)}</span>
-					</a>
-						<div class="proj_popup">
-							<a
-								style="padding: 8px; margin-right: -5px; display: inline-block"><i
-								class="material-icons">mode_edit</i></a> <a
-								style="padding: 8px; margin-right: -5px; display: inline-block"><i
-								class="material-icons">delete</i></a>
+					<li><a><i class="material-icons">fiber_manual_record</i>
+					<span class="text_aligner">${proj.name}</span>
+					<span style="float: right; padding: 4px;">${fn:length(proj.tasks)}</span>
+					</a><div class="proj_popup">
+							<a style="padding: 8px; margin-right: -5px; display: inline-block">
+							<i class="material-icons">mode_edit</i></a>
+							<a style="padding: 8px; margin-right: -5px; display: inline-block">
+							<i class="material-icons">delete</i></a>
 						</div></li>
 				</c:forEach>
 
