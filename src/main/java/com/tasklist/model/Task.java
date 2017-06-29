@@ -13,7 +13,6 @@ public class Task {
 	@Id
 	private ObjectId id;
 	private String name;
-	private String taskDescription;
 	private Calendar startDate;
 	private boolean isCompleted;
 	@DBRef
@@ -48,14 +47,6 @@ public class Task {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public String getTaskDescription() {
-		return taskDescription;
-	}
-
-	public void setTaskDescription(String taskDescription) {
-		this.taskDescription = taskDescription;
 	}
 
 	public boolean isCompleted() {
@@ -100,7 +91,7 @@ public class Task {
 
 	@Override
 	public String toString() {
-		return "Id " + id + " name " + name + " description: " + taskDescription + " startDate " + startDate.getTime()
+		return "Id " + id + " name " + name + " startDate " + startDate.getTime()
 				+ " isCompleted " + isCompleted;// + " user "+ user.getId();
 	}
 

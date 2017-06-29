@@ -13,29 +13,17 @@ public class DateUtils {
 
 	public static boolean isWithinDaysFuture(Calendar cal, int days) {
 		if (cal == null) {
-			throw new IllegalArgumentException("The date must not be null");
+			return false;
 		}
 		Calendar today = Calendar.getInstance();
 		Calendar future = Calendar.getInstance();
 		future.add(Calendar.DAY_OF_YEAR, days);
-		boolean s1 = isSameDay(cal, today);
-		boolean s2 = isAfterDay(cal, today);
-		boolean s3 = isAfterDay(cal, future);
-		boolean s4 = isSameDay(cal, future);
-		// LOG.info(s1);
-		// LOG.info(s2);
-		// LOG.info(s3);
-		// LOG.info(s4);
-		// LOG.info(cal.get(Calendar.DAY_OF_YEAR));
-		// LOG.info(future.get(Calendar.DAY_OF_YEAR));
-		// LOG.info(cal.get(Calendar.DAY_OF_MONTH));
-		// LOG.info(cal.get(Calendar.DAY_OF_MONTH));
 		return (isSameDay(cal, today) || isAfterDay(cal, today) || isSameDay(cal, future)) && !isAfterDay(cal, future);
 	}
 
 	public static boolean isAfterDay(Calendar cal1, Calendar cal2) {
 		if (cal1 == null || cal2 == null) {
-			throw new IllegalArgumentException("The dates must not be null");
+			return false;
 		}
 		if (cal1.get(Calendar.ERA) < cal2.get(Calendar.ERA))
 			return false;
@@ -50,7 +38,7 @@ public class DateUtils {
 
 	public static boolean isSameDay(Date date1, Date date2) {
 		if (date1 == null || date2 == null) {
-			throw new IllegalArgumentException("The dates must not be null");
+			return false;
 		}
 		Calendar cal1 = Calendar.getInstance();
 		cal1.setTime(date1);
@@ -61,7 +49,7 @@ public class DateUtils {
 
 	public static boolean isSameDay(Calendar cal1, Calendar cal2) {
 		if (cal1 == null || cal2 == null) {
-			throw new IllegalArgumentException("The dates must not be null");
+			return false;
 		}
 		return (cal1.get(Calendar.ERA) == cal2.get(Calendar.ERA) && cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR)
 				&& cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR));

@@ -105,7 +105,6 @@ public class TaskServiceImpl implements TaskService {
 		taskToUpdate.setCompleted(task.isCompleted());
 		taskToUpdate.setName(task.getName());
 		taskToUpdate.setStartDate(task.getStartDate());
-		taskToUpdate.setTaskDescription(task.getTaskDescription());
 		return mapper.map(taskToUpdate, TaskDTO.class);
 	}
 

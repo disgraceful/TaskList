@@ -8,7 +8,6 @@ import org.bson.types.ObjectId;
 public class TaskDTO {
 	private ObjectId id;
 	private String name;
-	private String taskDescription;
 	private Calendar startDate;
 	private boolean isCompleted;
 	private ObjectId userId;
@@ -27,14 +26,6 @@ public class TaskDTO {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public String getTaskDescription() {
-		return taskDescription;
-	}
-
-	public void setTaskDescription(String taskDescription) {
-		this.taskDescription = taskDescription;
 	}
 
 	public Calendar getStartDate() {
@@ -63,7 +54,7 @@ public class TaskDTO {
 
 	@Override
 	public String toString() {
-		return "Id " + id + " name " + name + " description " + taskDescription + " date " + startDate.getTime() + " completed "
+		return "Id " + id + " name " + name + " date " + startDate.getTime() + " completed "
 				+ isCompleted + " userId " + userId;
 	}
 }

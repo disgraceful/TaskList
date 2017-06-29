@@ -44,9 +44,9 @@ public class DataLoader implements ApplicationRunner {
 		Project project3 = new Project("Shopping");
 		Project project4 = new Project("Movies to watch");
 	
-		Task task1 = new Task("Wash my car!", new GregorianCalendar(2017, 5, 13));
-		Task task2 = new Task("Call my mom!", new GregorianCalendar(2017, 5, 13));
-		Task task3 = new Task("Kill myself!", new GregorianCalendar(2017, 5, 15));
+		Task task1 = new Task("Wash my car!", new GregorianCalendar(2017, 5, 29));
+		Task task2 = new Task("Call my mom!", new GregorianCalendar(2017, 5, 29));
+		Task task3 = new Task("Kill myself!", new GregorianCalendar(2017, 6, 15));
 		Task task4 = new Task("Run every morning!");
 		Task task5 = new Task("Learn Spring MVC!", new GregorianCalendar(2017, 7, 28));
 		Task task6 = new Task("Bee positive, bee yourself, bee happy!");

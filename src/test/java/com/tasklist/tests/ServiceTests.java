@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.tasklist.dao.contracts.TaskDAO;
 import com.tasklist.dao.contracts.UserDAO;
 import com.tasklist.model.Task;
 import com.tasklist.services.contracts.UserService;
@@ -31,6 +32,9 @@ public class ServiceTests {
 
 	@Autowired
 	private UserDAO userDAO;
+	
+	@Autowired 
+	private TaskDAO taskDAO;
 
 	private UserDTO userDTO;
 
@@ -39,7 +43,7 @@ public class ServiceTests {
 		userDAO.deleteAll();
 	}
 
-	@Test
+	//@Test
 	public void testUserServiceCreate() {
 		UserRegisterReqModel model = new UserRegisterReqModel();
 		model.setLogin("hehe");
@@ -49,7 +53,7 @@ public class ServiceTests {
 		// LOG.info(userDTO.toString());
 	}
 
-	@Test
+	//@Test
 	public void testUserServiceUpdate() {
 		UserRegisterReqModel model = new UserRegisterReqModel();
 		model.setLogin("hehe");
@@ -67,11 +71,10 @@ public class ServiceTests {
 
 	@Test
 	public void testGetTasksForToday() {
-		Task task = new Task("Lol", new GregorianCalendar(2017, 5, 15));
-		LOG.info("date" + DateUtils.isToday(task.getStartDate()));
+		taskDAO.findAll().stream().forEach(e->LOG.info(e.getName() + " " + DateUtils.isToday(e.getStartDate())));
 	}
 
-	@Test
+	//@Test
 	public void testGetTasksForWeek() {
 		Task task = new Task("Lol", new GregorianCalendar(2017, 5, 15));
 		Task task2 = new Task("Lol", new GregorianCalendar(2017, 5, 21));
