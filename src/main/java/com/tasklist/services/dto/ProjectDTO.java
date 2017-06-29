@@ -6,6 +6,7 @@ public class ProjectDTO {
 	private ObjectId id;
 	private String name;
 	private ObjectId userId;
+	private int taskAmount;
 
 	public ObjectId getId() {
 		return id;
@@ -31,9 +32,17 @@ public class ProjectDTO {
 		this.userId = userId;
 	}
 	
+	public int getTaskAmount() {
+		return taskAmount;
+	}
+
+	public void setTaskAmount(int taskAmount) {
+		this.taskAmount = taskAmount;
+	}
+
 	@Override
 	public String toString() {
-		return "Id " + id + " name " + name + " userId " + userId;
+		return "Id " + id + " name " + name + " userId " + userId + " tasks "+ taskAmount;
 	}
 
 }

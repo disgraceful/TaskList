@@ -16,6 +16,7 @@ import com.tasklist.model.Project;
 import com.tasklist.services.contracts.ProjectService;
 import com.tasklist.services.contracts.UserService;
 import com.tasklist.services.dto.ProjectDTO;
+import com.tasklist.services.mapper.ProjectMapperMap;
 import com.tasklist.services.requestmodels.ProjectCreateReqModel;
 
 @Service
@@ -23,15 +24,18 @@ public class ProjectServiceImpl implements ProjectService {
 
 	private static final Logger LOG = LogManager.getLogger(ProjectServiceImpl.class);
 
-	@Autowired
 	private ProjectDAO projectDAO;
-
-	@Autowired
 	private UserService userService;
-
-	@Autowired
 	private ModelMapper mapper;
 
+	@Autowired
+	public ProjectServiceImpl(ProjectDAO projectDAO,UserService userService, ModelMapper mapper){
+		this.projectDAO = projectDAO;
+		this.userService = userService;
+		this.mapper = mapper;
+		this.mapper.addMappings(new ProjectMapperMap());
+	}
+	
 	@Override
 	@Transactional
 	public ProjectDTO getProjectByIdAsDTO(ObjectId id) {

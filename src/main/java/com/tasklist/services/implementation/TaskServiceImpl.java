@@ -18,6 +18,7 @@ import com.tasklist.services.contracts.ProjectService;
 import com.tasklist.services.contracts.TaskService;
 import com.tasklist.services.dto.TaskDTO;
 import com.tasklist.services.requestmodels.TaskCreateReqModel;
+import com.tasklist.services.utils.DateUtils;
 
 @Service
 public class TaskServiceImpl implements TaskService {
@@ -32,6 +33,22 @@ public class TaskServiceImpl implements TaskService {
 
 	@Autowired
 	private ModelMapper mapper;
+
+	@Override
+	@Transactional
+	public List<TaskDTO>getTasksForWeek(){
+		return taskDAO.findAll().stream()
+				.filter(e -> DateUtils.isWithinDaysFuture(e.getStartDate(),6))
+				.map(f -> mapper.map(f, TaskDTO.class))
+				.collect(Collectors.toList());
+	}
+	
+	@Override
+	@Transactional
+	public List<TaskDTO> getTasksForToday() {
+		return taskDAO.findAll().stream().filter(e -> DateUtils.isToday(e.getStartDate()))
+				.map(f -> mapper.map(f, TaskDTO.class)).collect(Collectors.toList());
+	}
 
 	@Override
 	@Transactional
@@ -89,7 +106,7 @@ public class TaskServiceImpl implements TaskService {
 		taskToUpdate.setName(task.getName());
 		taskToUpdate.setStartDate(task.getStartDate());
 		taskToUpdate.setTaskDescription(task.getTaskDescription());
-		return mapper.map(taskToUpdate,TaskDTO.class);
+		return mapper.map(taskToUpdate, TaskDTO.class);
 	}
 
 	@Override

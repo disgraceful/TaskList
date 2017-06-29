@@ -27,7 +27,7 @@ public class Task {
 
 	public Task(String name, GregorianCalendar start) {
 		this.name = name;
-		this.startDate = new GregorianCalendar();
+		this.startDate = start;
 	}
 
 	public Task(String name) {

@@ -36,7 +36,6 @@ public class WelcomeController {
 
 	@RequestMapping(value = "/login")
 	public ModelAndView loginPage() {
-		LOG.info("self.location works!");
 		ModelAndView mav = new ModelAndView("login");
 		mav.addObject("user", new UserLoginReqModel());
 		return mav;
@@ -44,7 +43,6 @@ public class WelcomeController {
 	
 	@RequestMapping(value = "/register")
 	public ModelAndView registerPage() {
-		LOG.info("self.location works!");
 		ModelAndView mav = new ModelAndView("register");
 		mav.addObject("user", new UserRegisterReqModel());
 		return mav;

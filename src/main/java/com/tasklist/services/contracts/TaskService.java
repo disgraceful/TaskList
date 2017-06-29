@@ -27,4 +27,8 @@ public interface TaskService {
 
 	void deleteTask(ObjectId taskId);
 
+	List<TaskDTO> getTasksForToday();
+
+	List<TaskDTO> getTasksForWeek();
+
 }

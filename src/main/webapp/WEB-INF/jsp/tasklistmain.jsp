@@ -42,7 +42,7 @@
 				<c:forEach var="proj" items="${projects}" varStatus="loop">
 					<li><a><i class="material-icons">fiber_manual_record</i>
 					<span class="text_aligner">${proj.name}</span>
-					<span style="float: right; padding: 4px;">${fn:length(proj.tasks)}</span>
+					<span style="float: right; padding: 4px;">${proj.taskAmount}</span>
 					</a><div class="proj_popup">
 							<a style="padding: 8px; margin-right: -5px; display: inline-block">
 							<i class="material-icons">mode_edit</i></a>
@@ -50,7 +50,7 @@
 							<i class="material-icons">delete</i></a>
 						</div></li>
 				</c:forEach>
-
+				
 				<li class="bottom"><a href="javascript:addProject()"><i
 						class="material-icons">add</i><span class="text_aligner">Add
 							new project</span></a></li>
@@ -79,11 +79,12 @@
 		<ul class="mycontent">
 			<li><a style="padding: 15px;">Task #1</a>
 				<div id="icon_con" class="icon_container">
-					<a style="padding: 0px; display: inline-block"><i
-						class="material-icons right ">mode_edit</i></a> <a
-						style="padding: 0px; display: inline-block"><i
-						class="material-icons right">delete</i></a>
-					<div></li>
+					<a style="padding: 0px; display: inline-block">
+					<i class="material-icons right ">mode_edit</i></a>
+					<a style="padding: 0px; display: inline-block">
+					<i class="material-icons right">delete</i></a>
+				</div>
+			</li>
 		</ul>
 
 	</div>
