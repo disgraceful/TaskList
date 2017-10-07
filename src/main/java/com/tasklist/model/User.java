@@ -6,7 +6,9 @@ import java.util.List;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document
 public class User {
 	@Id
 	private ObjectId id;
@@ -14,16 +16,13 @@ public class User {
 	@Indexed(unique = true)
 	private String login;
 	private String password;
-	private List<Task> tasks;
-	private List<Project> projects;
+	private List<Task> tasks = new ArrayList<>();
+	private List<Project> projects = new ArrayList<>();
 
 	public User() {
-		tasks = new ArrayList<>();
-		projects = new ArrayList<>();
 	}
 
 	public User(String login, String password) {
-		this();
 		this.login = login;
 		this.password = password;
 	}
@@ -71,12 +70,15 @@ public class User {
 	public void addTask(Task task) {
 		if (!tasks.contains(task)) {
 			tasks.add(task);
+			task.setUser(this);
+			
 		}
 	}
 
 	public void deleteTask(Task task) {
 		if (tasks.contains(task)) {
 			tasks.remove(task);
+			task.setUser(null);
 		}
 	}
 

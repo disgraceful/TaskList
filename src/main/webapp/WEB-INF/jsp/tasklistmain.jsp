@@ -15,8 +15,9 @@
 <body>
 	<spring:url value="/logout" var="logoutUrl" />
 	<ul id="topbar" class="topnav">
-		<li><a href="javascript:closeSideBar()"><i
-				class="material-icons">menu</i></a></li>
+		<li><a href="javascript:closeSideBar()">
+			<i class="material-icons">menu</i>
+		</a></li>
 		<li class="center"><a class="not_active">Date</a></li>
 		<li class="right"><a href="<c:url value="${logoutUrl}"/>">
 			<i class="material-icons">exit_to_app</i></a></li>
@@ -29,23 +30,27 @@
 				class="text_aligner">${user.login}</span>
 		</a></li>
 		<li>
-		<a class="show_tasks">
+		<a class="show_today">
 			<i class="material-icons">today</i> 
 			<span class="text_aligner">Today</span>
 			<span style="float: right; padding: 4px;">12</span>
 		</a>
 		</li>
-		<li><a><i class="material-icons">date_range</i><span
-				class="text_aligner">Next 7 Days</span><span
-				style="float: right; padding: 4px;">12</span></a></li>
-		<li><a> <i class="material-icons">folder</i> <span
-				class="text_aligner" style="float: left;">Projects </span>
+		<li><a class="show_week">
+			<i class="material-icons">date_range</i>
+			<span class="text_aligner">Next 7 Days</span>
+			<span style="float: right; padding: 4px;">12</span>
+		</a>
+		</li>
+		<li><a>
+		<i class="material-icons">folder</i>
+		<span class="text_aligner" style="float: left;">Projects</span>
 		</a></li>
 		<li>
 			<ul class="sidenav" id="projects">
 				<c:forEach var="proj" items="${projects}" varStatus="loop">
 					<li>
-					<a class="show_proj">
+					<a href="javascript:showTasksForProj('${proj.id}','${proj.name}')" >
 						<i class="material-icons">fiber_manual_record</i>
 						<span class="text_aligner">${proj.name}</span>
 						<span style="float: right; padding: 4px;">${proj.taskAmount}</span>
@@ -58,9 +63,10 @@
 					</div></li>
 				</c:forEach>
 				
-				<li class="bottom"><a href="javascript:addProject()"><i
-						class="material-icons">add</i><span class="text_aligner">Add
-							new project</span></a></li>
+				<li class="bottom"><a href="javascript:addProject()">
+					<i	class="material-icons">add</i>
+					<span class="text_aligner">Add	new project</span>
+				</a></li>
 			</ul>
 		</li>
 	</ul>

@@ -17,6 +17,7 @@ import org.springframework.web.util.WebUtils;
 import com.tasklist.services.contracts.ProjectService;
 import com.tasklist.services.contracts.TaskService;
 import com.tasklist.services.contracts.UserService;
+import com.tasklist.services.dto.ProjectDTO;
 import com.tasklist.services.dto.UserDTO;
 import com.tasklist.services.requestmodels.UserLoginReqModel;
 import com.tasklist.services.requestmodels.UserRegisterReqModel;
@@ -65,7 +66,10 @@ public class WelcomeController {
 		
 		mav.addObject("user", user);
 		mav.addObject("projects",projService.getProjectByUserIdAsDTO(user.getId()));
-		mav.addObject("tasks",taskService.getTasksByUserId(user.getId()));
+		
+		for(ProjectDTO proj:projService.getProjectByUserIdAsDTO(user.getId())){
+			LOG.info(proj.getId());
+		}
 		return mav;
 	}
 }

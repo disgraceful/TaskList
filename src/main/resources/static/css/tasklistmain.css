@@ -116,8 +116,6 @@ ul.topnav li.center {
 	color: white;
 }
 
-
-
 ul.sidenav li a:active {
 	background-color: teal;
 	color: white;
@@ -189,9 +187,9 @@ ul.sidenav li a:active {
 .icon_container{
 	position:fixed;
 	right:10px;
-	top:65px;
 	width:100px;
 	margin-left:-100px;
+	margin-top:-40px;
 }
 
 #create_task{

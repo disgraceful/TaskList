@@ -6,8 +6,6 @@ import java.util.Date;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
-import com.tasklist.tests.MapperTests;
-
 public class DateUtils {
 	private static Logger LOG = LogManager.getLogger(DateUtils.class);
 

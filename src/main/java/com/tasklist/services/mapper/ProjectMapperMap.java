@@ -9,6 +9,7 @@ public class ProjectMapperMap extends PropertyMap<Project,ProjectDTO> {
 
 	@Override
 	protected void configure() {
+		map().setId(source.getId());
 		map().setTaskAmount(source.getTasks().size());
 	}
 

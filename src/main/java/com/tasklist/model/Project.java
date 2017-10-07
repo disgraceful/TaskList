@@ -7,22 +7,21 @@ import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document
 public class Project {
 	@Id
 	private ObjectId id;
-	@Indexed(unique = true)
 	private String name;
-	private List<Task> tasks;
+	private List<Task> tasks = new ArrayList<>();
 	@DBRef
 	private User user;
 
 	public Project() {
-		tasks = new ArrayList<>(); 
 	}
 
 	public Project(String name) {
-		this();
 		this.name = name;
 	}
 
@@ -70,10 +69,4 @@ public class Project {
 		}
 
 	}
-
-	@Override
-	public String toString() {
-		return "Id " + id + " name " + name + " userId " + user.getId();
-	}
-
 }

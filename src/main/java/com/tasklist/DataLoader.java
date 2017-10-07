@@ -44,14 +44,13 @@ public class DataLoader implements ApplicationRunner {
 		Project project3 = new Project("Shopping");
 		Project project4 = new Project("Movies to watch");
 	
-		Task task1 = new Task("Wash my car!", new GregorianCalendar(2017, 5, 29));
-		Task task2 = new Task("Call my mom!", new GregorianCalendar(2017, 5, 29));
-		Task task3 = new Task("Kill myself!", new GregorianCalendar(2017, 6, 15));
+		Task task1 = new Task("Wash my car!", new GregorianCalendar(2017, 6, 31));
+		Task task2 = new Task("Call my mom!", new GregorianCalendar(2017, 6, 31));
+		Task task3 = new Task("Kill myself!", new GregorianCalendar(2017, 7, 4));
 		Task task4 = new Task("Run every morning!");
 		Task task5 = new Task("Learn Spring MVC!", new GregorianCalendar(2017, 7, 28));
 		Task task6 = new Task("Bee positive, bee yourself, bee happy!");
 		Task task7 = new Task("Watch Guardians of the Galaxy vol. 2 (It's awesome!)");
-		
 		
 		user1.addProject(project1);
 		user1.addProject(project2);
@@ -82,5 +81,6 @@ public class DataLoader implements ApplicationRunner {
 		taskDAO.save(task5);
 		taskDAO.save(task6);
 		taskDAO.save(task7);
+		LOG.info(project1.getId());
 	}
 }
